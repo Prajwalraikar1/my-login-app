@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:18'
-            args '-u root'
+            args '-u root'  // optional: run as root to avoid permission issues
         }
     }
 
