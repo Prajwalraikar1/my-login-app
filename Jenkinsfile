@@ -1,25 +1,20 @@
 pipeline {
-    agent any
+  agent any
 
-    tools {
-        nodejs 'NodeJS 18'  // The name you gave in Jenkins global tools config
-    }
+  tools {
+    nodejs 'NodeJS 18.20.0'  // Name from Jenkins Global Tool Config
+  }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Prajwalraikar1/my-login-app.git'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'npm run build'
-            }
-        }
+  stages {
+    stage('Install') {
+      steps {
+        sh 'npm install'
+      }
     }
+    stage('Build') {
+      steps {
+        sh 'npm run build'
+      }
+    }
+  }
 }
