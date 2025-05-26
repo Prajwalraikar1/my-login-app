@@ -1,26 +1,20 @@
-pipeline {
-    agent {
-        docker {
-            image 'node:18'
-            args '-u root'  // optional: run as root to avoid permission issues
-        }
-    }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Prajwalraikar1/my-login-app.git'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-    }
-}
+pipeline { 
+    agent any 
+    stages { 
+        stage('Checkout') { 
+            steps { 
+                git 'https://github.com/Prajwalraikar1/my-login-app.git' 
+            } 
+        } 
+        stage('Install Dependencies') { 
+            steps { 
+                sh 'npm install' 
+            } 
+        } 
+        stage('Build') { 
+            steps { 
+                sh 'npm run build' 
+            } 
+        } 
+    } 
+} 
