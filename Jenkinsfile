@@ -1,20 +1,41 @@
 pipeline {
-  agent any
+    agent any
 
-  tools {
-    nodejs 'NodeJS 18.20.0'  // Name from Jenkins Global Tool Config
-  }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Prajwalraikar1/my-login-app.git'
+            }
+        }
 
-  stages {
-    stage('Install') {
-      steps {
-        sh 'npm install'
-      }
+        stage('Install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'npm test -- --watchAll=false'  // run tests once
+            }
+        }
     }
-    stage('Build') {
-      steps {
-        sh 'npm run build'
-      }
+
+    post {
+        always {
+            echo 'Build finished!'
+        }
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
     }
-  }
 }
