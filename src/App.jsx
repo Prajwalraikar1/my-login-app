@@ -3,7 +3,7 @@ import "./App.css";
 function App() {
   return (
     <div className="login-box">
-      <h2>Login Page</h2>
+      <h2>Login Page-1</h2>
       <form>
         <div className="input-box">
           <input type="text" placeholder="Username" />
